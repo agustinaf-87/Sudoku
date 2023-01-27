@@ -32,14 +32,24 @@
     <div class="main">
         <div class="screen">
             <!--Start Screen-->
-            <div class="start-screen" id="start-screen">
-
+            <div class="start-screen active" id="start-screen">
+                <input type="text" placeholder="Type your name"  maxlength="20" class="input-name" id="input-name">
+                <div class="btn" id="btn-level">
+                    Easy
+                </div>
+                <div class="btn" id="btn-continue">
+                    Continue
+                </div>
+                <div class="btn btn-blue" id="btn-play">
+                    New Game
+                </div>
             </div>
             <!--End Screen-->
         </div>
     </div>
     <!--End main-->
-    <script src="sudoku.js"></script>
+    <script src="./js/constant.js"></script>
+    <script src="./js/sudoku.js"></script>
 </body>
 
 </html>
