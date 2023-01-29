@@ -31,6 +31,9 @@ let timer = null;
 let pause = false; 
 let seconds = 0;
 
+let su = undefined;
+let su_answer = undefined;
+
 //
 
 
@@ -56,6 +59,14 @@ const getPlayerName = () => localStorage.getItem("player_name");
 
 const showTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11,8 );
 
+const initSudoku = ()=>{
+    //generate Sudoku 
+    su = sudukoGen(level);
+    su_answer = [...su.question];
+
+    console.table(su_answer);
+}
+
 const startGame = ()=>{
     start_screen.classList.remove("active");
     game_screen.classList.add("active");
@@ -66,6 +77,9 @@ const startGame = ()=>{
     game_level.innerHTML = CONSTANT.LEVEL_NAME[levelIndex];
 
     seconds = 0;
+    showTime(seconds);
+
+    initSudoku();
 
     timer = setInterval(() => {
         if(!pause){
