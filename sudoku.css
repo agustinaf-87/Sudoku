@@ -4,12 +4,12 @@
     --bg-main: #f0f2f5; 
     --bg-body: #fff;
     --txt-color: #000;
-    --bg-filled: #caf0f8;
+    --bg-filled: #C9E4E3;
     --color-filled: #000;
 
     --white: #fff;
-    --blue: #00aeef;
-    --red: #e91e63;
+    --blue: #3E7A77;
+    --red: #F16A6A;
     --black: #000;
 
     --nav-size: 70px;
@@ -27,10 +27,10 @@
 }
 
 .dark{
-    --bg-main: #2a2a38;
-    --bg-body: #1a1a2e;
-    --txt-color: #6a6a6a;
-    --color-filled: #4f4f63;
+    --bg-main: #49666E; 
+    --bg-body: #182225;
+    --txt-color: #212D31;
+    --color-filled: #384F56;
     --bg-filled: #000;
 }
 
@@ -117,7 +117,7 @@ nav{
 }
 
 .main{
-    height: 100vh;
+    /* height: 100vh; */
     padding-top: var(--nav-size);
     display: grid;
     place-items: center;
@@ -236,7 +236,7 @@ nav{
     color: var(--color-filled);
 }
 
-.main-grid-cell.slected{
+.main-grid-cell.selected{
     background-color: var(--blue);
     color: var(--white);
 }
@@ -285,7 +285,7 @@ nav{
     margin-bottom: auto;
 }
 
-.pause-btn{
+.pause-btn {
     position: absolute;
     right: 10px;
     height: 30px;
@@ -320,9 +320,17 @@ nav{
 .delete{
     background-color: var(--red);
     color: var(--white);
+    height: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    font-size: var(--font-size);
+    cursor: pointer;
+
 }
 
-.pause-screen{
+.pause-screen, 
+.result-screen{
     position: absolute;
     top: 0;
     left: 0;
@@ -335,16 +343,42 @@ nav{
     display: none;
 }
 
-.pause-screen.active {
+.pause-screen.active,
+.result-screen.active {
     display: flex;
 }
 
-.pause-screen > * + * {
+.pause-screen > * + * , 
+.result-screen > * + *{
     margin-top: 20px;
 }
 
+.result-screen.active div{
+    animation: zoom-in .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
 .pause-screen.active .btn{
     animation: zoom-in .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-screen .congrate{
+    font-size: var(--font-size-xl);
+    color: var(--blue);
+}
+
+.result-screen .info{
+    color: var(--txt-color);
+    font-size: var(--font-size);
+}
+
+#result-time{
+    color: var(--blue);
+    font-size: var(--font-size-xl);
+}
+
+.zoom-in{
+    animation: zoom-in .5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
 @keyframes zoom-in {
@@ -354,3 +388,56 @@ nav{
         transform: scale(1);
     }
 }
+
+.cell-error{
+    animation: zoom-out-shake .5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+@keyframes zoom-out-shake {
+    0%{
+        transform: scale(2);
+    }25%{
+        transform: scale(2) rotate(300deg);
+    }50%{
+        transform: scale(2) rotate(-300deg);
+    }100%{
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 800px){
+    :root{
+        --nav-size: 50px;
+
+        --sudoku-cell-size: 30px;
+
+        --border-radius: 5px;
+
+        --space-y: 10px;
+
+        --gap:2px;
+
+        --font-size: 1rem;
+        --font-size-lg: 1.5rem;
+        --font-size-xl: 2rem;
+        
+    }
+
+    .input-name, 
+    .btn{
+        height: 50px;
+    }
+
+    .main-grid-cell.hover{
+        border-width: 2px;
+    } 
+
+    .screen {
+        min-width: unset;
+    }
+
+    .main {
+        height: 100vh;
+    }
+}
+

@@ -20,7 +20,7 @@ const isColSafe = (grid, col, value) => {
 }
 //check if duplicate number in row
 const isRowSafe = (grid, row, value) => {
-    for (col = 0; col < CONSTANT.GRID_SIZE; col++) {
+    for (let col = 0; col < CONSTANT.GRID_SIZE; col++) {
         if (grid[row][col] === value) return false;
     }
     return true;
